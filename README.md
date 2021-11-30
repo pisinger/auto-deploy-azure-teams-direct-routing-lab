@@ -20,7 +20,9 @@
 This guide will help for setting up a self-paced Teams Direct Routing Lab in Azure by using the given script
 > <https://docs.microsoft.com/en-us/microsoftteams/direct-routing-landing-page/>
 
-The main idea of this setup is to use Direct Routing **without going for real/public SIP Trunk (Telco) and PSTN connectivity**, instead we make use of number manipulation and re-routing logic (looping). In fact, we do route calls from Teams to the SBC and then looping/routing them back to Teams. The key is to avoid RNL (Reverse Number Lookup) when dialing numbers - this is where number manipulation comes into place.
+The main idea of this setup is to use Direct Routing **without going for real/public SIP Trunk (Telco) and PSTN connectivity**, instead we make use of number manipulation and re-routing logic (looping). 
+
+In fact, we do route calls from Teams to the SBC and then looping/routing them back to Teams. The key is to avoid RNL (Reverse Number Lookup) when dialing numbers - this is where number manipulation comes into place.
 
 ## 2 Prerequisites
 
@@ -142,20 +144,20 @@ Typically, I am going for `+99 to force PSTN Call and to avoid RNL matching` –
 
 The above picture shows the following 3 call scenarios:
 
-> `Call to PSTN by dialing +99 5555 012 (Call to yourself -> Alice to Alice)`
+> `1 - Call to PSTN by dialing +99 5555 012 (Call to yourself -> Alice to Alice)`
 
 - Due to prefix +99 we don’t have RNL match and so the call is proper routed to SBC side
 - The SBC is then performing "Inbound Number Manipulation" for the Destination Number, in fact replacing +99 by +49
 - Then the call is routed to Teams and before leaving SBC the Source Number is manipulated by replacing +49 by +99. This will prevent RNL on Teams side again and so we are not getting confused when receiving a call from yourself, as well providing us the possibility to simply call back as the number is show with +99 prefix.
 
-> `Call to PSTN by dialing +799 5555 012 (Call to yourself -> Alice to Alice)`
+> `2 - Call to PSTN by dialing +799 5555 012 (Call to yourself via other SBC -> Alice to Alice)`
 
 - Due to prefix +799 we don’t have RNL match and so the call is again proper routed to SBC side
 - The SBC is not performing "Inbound Number Manipulation" for the Destination Number as we don’t have a match for +799
 - The call then is then routed to another SBC (in our case to sbc3) and before leaving SBC the Destination Number is manipulated by replacing +799 by +49.
 - The call then comes in on SBC3 which is simply routing the call back to Teams, but before that doing again "Outbound Manipulation" for the Source Number to avoid again RNL on Teams side.
 
-> `Call to PSTN by dialing +99 5555 015 (Call to yourself -> Alice to Bob)`
+> `3 - Call to PSTN by dialing +99 5555 015 (Call to Bob -> Alice to Bob)`
 
 - Due to prefix +99 we don’t have RNL match and so the call is proper routed to SBC side
 - The SBC is then performing "Inbound Number Manipulation" for the Destination Number, in fact replacing +99 by +49
