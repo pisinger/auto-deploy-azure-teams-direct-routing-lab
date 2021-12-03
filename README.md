@@ -268,7 +268,11 @@ The last step before restarting the device is to upload our `Public Certificate`
 > 👉 For DigiCert you can download the trusted root certificates from the below - there you will also find the Baltimore CyberTrust Root: <br/>
 <https://www.digicert.com/kb/digicert-root-certificates.htm/>
 
-As always, click to SAVE.
+![picture](images/8j-baltimore-cert.png)
+
+> <https://docs.microsoft.com/en-us/microsoft-365/compliance/encryption-office-365-certificate-chains?view=o365-worldwide/>
+
+As always, do not forget about to SAVE when doing the below.
 
 ![picture](images/8j-import-certs.png)
 
