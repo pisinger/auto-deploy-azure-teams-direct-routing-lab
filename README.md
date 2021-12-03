@@ -265,8 +265,7 @@ We then need to enable `Media Security` manually – again click to `SAVE` witho
 
 The last step before restarting the device is to upload our `Public Certificate`, as well the Root/CA Certificates. The Public Certificate will be imported by clicking to `Change Certificate`. The Root Certs needs to get imported via `Trusted Root Certificates`.
 
-> 👉 For DigiCert you can download the trusted root certificates from the below - there you will also find the Baltimore CyberTrust Root: <br/>
-<https://www.digicert.com/kb/digicert-root-certificates.htm/>
+> 👉 For DigiCert you can download the trusted root certificates from the below - there you will also find the Baltimore CyberTrust Root: <https://www.digicert.com/kb/digicert-root-certificates.htm/>
 
 ![picture](images/8j-baltimore-cert.png)
 
