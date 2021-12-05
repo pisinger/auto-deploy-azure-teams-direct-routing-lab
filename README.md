@@ -20,7 +20,7 @@
 This guide will help for setting up a self-paced Teams Direct Routing Lab in Azure by using the given script
 > <https://docs.microsoft.com/en-us/microsoftteams/direct-routing-landing-page/>
 
-The main idea of this setup is to use Direct Routing **without going for real/public SIP Trunk (Telco) and PSTN connectivity**, instead we make use of number manipulation and re-routing logic (looping). 
+The main idea of this setup is to use Direct Routing **without going for real/public SIP Trunk (Telco) and PSTN connectivity**, instead we make use of number manipulation and re-routing logic (looping).
 
 In fact, we do route calls from Teams to the SBC and then looping/routing them back to Teams. The key is to avoid RNL (Reverse Number Lookup) when dialing numbers - this is where number manipulation comes into place.
 
@@ -75,6 +75,8 @@ The given script will create a new Azure Resource Group with a predefined VNET, 
 + With that in mind, keep an eye to running state and consider shutting down when not used.
 ```
 
+> <https://docs.microsoft.com/en-us/azure/devtest-labs/devtest-lab-auto-shutdown/>
+
 ```txt
   sbc1: 10.1.0.11 (Primary Trunk DE)
   sbc2: 10.1.0.12 (Primary Trunk DE)
@@ -84,13 +86,18 @@ The given script will create a new Azure Resource Group with a predefined VNET, 
 
 In addition, the script will create Static Public IPs and assigning them automatically to the SBCs, as well to the Admin Machine for RDP connectivity purpose.
 
-The Admin Machine "admin-syslog01" will `listen on a random RDP port` to provide some `Security by Obscurity` – from here you can manage/setup your lab environment.
+The Windows Admin Machine will `listen on a random RDP port` to provide some `Security by Obscurity` – from here you can manage/setup your lab environment. The RDP listening port will be configured/changed by the admin machine post setup script running at the end of the deployment.
 
 ```diff
-+ ⚠ Note: 
-+ I would highly recommend going for P2S VPN – especially when you want to have the lab for longer time. 
-+ You could also leverage Azure Bastion.
+- ⚠ Note: 
+- I would highly recommend going for P2S VPN instead of exposing RDP connectivity from external - especially when you want to have the lab for longer time. 
+- You should also have a look to Azure Bastion, as well to Just-in-Time access to proper secure general access to your VM.
 ```
+
+> 👉 More information for how to securely access your machine can be found here: <br/>
+[Azure Just-in-time access](https://docs.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-usage)<br/>
+[Azure Bastion](https://docs.microsoft.com/en-us/azure/bastion/bastion-overview)<br/>
+[Azure P2S VPN](https://docs.microsoft.com/en-us/azure/vpn-gateway/point-to-site-about)
 
 ![picture](images/5b-azure-lab-setup.png)
 
