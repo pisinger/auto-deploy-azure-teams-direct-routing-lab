@@ -75,7 +75,7 @@ The given script will create a new Azure Resource Group with a predefined VNET, 
 + With that in mind, keep an eye to running state and consider shutting down when not used.
 ```
 
-> <https://docs.microsoft.com/en-us/azure/devtest-labs/devtest-lab-auto-shutdown/>
+> <https://docs.microsoft.com/en-us/shows/it-ops-talk/auto-shutdown-and-auto-start-an-azure-vm/>
 
 ```txt
   sbc1: 10.1.0.11 (Primary Trunk DE)
@@ -225,7 +225,7 @@ New-AzDnsRecordSet -Name "sbc3" -RecordType A -ResourceGroupName "RG-DNS" -TTL 1
 
 `Alternatively, Direct Routing supports a wildcard in the CN and/or SAN, and the wildcard needs to conform to standard RFC HTTP Over TLS. An example would be using *.contoso.com which would match the SBC FQDN sbc.contoso.com, but wouldn't match with sbc.test.contoso.com.`
 
-> 👉 More information about trusted CAs and certificate requirements can be found at: <br/>
+> 👉 More information about trusted CAs and certificate requirements can be found at:
 <https://docs.microsoft.com/en-us/MicrosoftTeams/direct-routing-plan#public-trusted-certificate-for-the-sbc/>
 
 ---
@@ -368,7 +368,8 @@ Get-CsOnlineUser "john.doe@contoso.com" | select SipAddress,DisplayName,OnlineVo
 
 👉 More information for how to enable users for Direct Routing can be found at:
 
-> <https://docs.microsoft.com/en-us/microsoftteams/direct-routing-enable-users/> <br/>
+> <https://docs.microsoft.com/en-us/microsoftteams/direct-routing-enable-users/>
+
 > <https://docs.microsoft.com/en-us/MicrosoftTeams/direct-routing-plan#licensing-and-other-requirements/>
 
 ## License
