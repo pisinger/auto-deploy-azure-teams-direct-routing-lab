@@ -1,6 +1,8 @@
 # auto-deploy-azure-teams-direct-routing-lab
 
-☝ `This lab does not provide real-world scenarios, it just demonstrates some "special/fictional" call scenarios (looping/rerouting and number manipulation) helping you to start playing around and getting familiar with Teams Direct Routing without going for Telco SIP Trunk actually required to connect to the PSTN.`
+```text
+☝ This lab does not provide real-world scenarios, it just demonstrates some "special/fictional" call scenarios (looping/rerouting and number manipulation) helping you to start playing around and getting familiar with Teams Direct Routing without going for Telco SIP Trunk actually required to connect to the PSTN.
+```
 
 ## Table of Contents
 
@@ -303,6 +305,15 @@ Now finally we are going for `RESET` to burn the config and restarting the SBC. 
 ![picture](images/8n-proxy-set-status-offline.png)
 
 ## 10 Setup Step by Step for Teams
+
+```text
+  1. New-CsOnlinePSTNGateway
+  2. Set-CsOnlinePstnUsage 
+  3. New-CsOnlineVoiceRoutingPolicy
+  4. New-CsOnlineVoiceRoute
+  5. Set-CsUser
+  6. Grant-CsOnlineVoiceRoutingPolicy
+```
 
 ```diff
 + ⚠ Note: Don’t forget to first connect to Teams PowerShell.
