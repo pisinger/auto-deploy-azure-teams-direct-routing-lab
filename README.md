@@ -1,8 +1,6 @@
 # auto-deploy-azure-teams-direct-routing-lab
 
-```text
-☝ This lab does not provide real-world scenarios, it just demonstrates some "special/fictional" call scenarios (looping/rerouting and number manipulation) helping you to start playing around and getting familiar with Teams Direct Routing without going for Telco SIP Trunk actually required to connect to the PSTN.
-```
+☝ `This lab does not provide real-world scenarios, it just demonstrates some "special/fictional" call scenarios (looping/rerouting and number manipulation) helping you to start playing around and getting familiar with Teams Direct Routing without going for Telco SIP Trunk actually required to connect to the PSTN.`
 
 ## Table of Contents
 
