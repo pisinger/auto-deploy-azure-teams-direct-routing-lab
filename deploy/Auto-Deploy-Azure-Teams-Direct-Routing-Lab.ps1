@@ -46,7 +46,7 @@ $StorageAccountName = $("drstorage" + $(Get-Random -Minimum 10000 -Maximum 99999
 
 # machine names - SBS machine name will also be used for public dns
 $SipDomain 		= Read-Host "Enter SIP Domain (SBC FQDN)"
-$AdminUserName	= Read-Host "Choose Azure Admin User Name" 
+$AdminUserName	= Read-Host "Choose Local Admin User Name - used for SBC + Windows Admin Machine" 
 $AdminMachine 	= "admin-syslog01"
 $SBCs 			= ("sbc1","sbc2","sbc3")
 
@@ -161,7 +161,7 @@ function Prepare-SbcConfigFile () {
 	$CountryCodeDigits1 = (($DummyNumberCountryCode1 + $DummyNumberAreaAndSub1) | Measure-Object -Character).Characters
 	$CountryCodeDigits2 = (($DummyNumberCountryCode2 + $DummyNumberAreaAndSub2) | Measure-Object -Character).Characters
 	
-	$SBCs | FOREACH {
+	$SBCs | ForEach-Object {
 	
 		$VmName = $_
 		
@@ -252,7 +252,7 @@ function Remove-TeamsDirectRoutingSetup () {
 	Remove-CsOnlineVoiceRoute -Identity $VoiceRouteName
 	
 	Set-CsOnlinePstnUsage -Identity global -Usage @{remove=$PstnUsageNameLoc}	
-	Get-CsOnlineUser | where OnlineVoiceRoutingPolicy -like $VoiceRouteName | Grant-CsOnlineVoiceRoutingPolicy -PolicyName ""
+	Get-CsOnlineUser | Where-Object OnlineVoiceRoutingPolicy -like $VoiceRouteName | Grant-CsOnlineVoiceRoutingPolicy -PolicyName ""
 	Remove-CsOnlineVoiceRoutingPolicy $VoiceRouteName
 	
 	Foreach ($sbc in $sbcs){
@@ -300,7 +300,7 @@ While (Get-Job -State "Running") {Get-Job -State "Completed" | Receive-Job;	Star
 #--------------------------------------------------
 # get public IPs needed for DNS
 "" | Out-File $($PSScriptRoot + "\config\OPEN-PublicDnsRequired.txt")
-$SBCS | foreach {$PublicIP = (Get-AzPublicIpAddress -ResourceGroupName $ResourceGroupName -Name "*$_*").IpAddress; $PublicIP + "`t" + "$_.$SipDomain" | Out-File -Append $($PSScriptRoot + "\config\OPEN-PublicDnsRequired.txt")}
+$SBCS | ForEach-Object {$PublicIP = (Get-AzPublicIpAddress -ResourceGroupName $ResourceGroupName -Name "*$_*").IpAddress; $PublicIP + "`t" + "$_.$SipDomain" | Out-File -Append $($PSScriptRoot + "\config\OPEN-PublicDnsRequired.txt")}
 #--------------------------------------------------
 # set custom rdp port for admin machine
 Invoke-AzVMRunCommand -ResourceGroupName $ResourceGroupName -VMName $AdminMachine -CommandId SetRDPPort -Parameter @{"RDPPORT" = $RandomRdpPort}
