@@ -187,7 +187,7 @@ After that you are ready to run the script.
 The script will then ask you for the following:
 
 - SIP Domain (not SBC FQDN, instead domain only)
-- Admin Username
+- Local Admin User Name (used for SBCs + Windows Machine)
 - Password
 
 ![picture](images/8b-script-execution-with-required-input.png)
