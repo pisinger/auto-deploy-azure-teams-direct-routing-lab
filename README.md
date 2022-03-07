@@ -375,11 +375,7 @@ Grant-CsOnlineVoiceRoutingPolicy -PolicyName "VOICE-ROUTING-POLICY-DE" -Identity
 Set-CsPhoneNumberAssignment -Identity "john.doe@contoso.com" -PhoneNumber "+495555012" -PhoneNumberType DirectRouting
 ```
 
-```diff
-+ If OnPremLineUriManuallySet is set to False and LineUri is populated with a <E.164 phone number>, the phone number was assigned on-premises and synchronized to Microsoft 365. If you want to manage the phone number online, clean the parameter using on-premises Skype for Business Management Shell and synchronize to Microsoft 365 before configuring the phone number using Teams PowerShell.
-```
-
-> <https://docs.microsoft.com/en-us/microsoftteams/direct-routing-enable-users#ensure-that-the-user-is-homed-online/>
+><https://docs.microsoft.com/en-us/microsoftteams/direct-routing-enable-users#ensure-that-the-user-is-homed-online/><br/> If OnPremLineUriManuallySet is set to False and LineUri is populated with a <E.164 phone number>, the phone number was assigned on-premises and synchronized to Microsoft 365. If you want to manage the phone number online, clean the parameter using on-premises Skype for Business Management Shell and synchronize to Microsoft 365 before configuring the phone number using Teams PowerShell.
 
 You can verify the user provisioned status via:
 
